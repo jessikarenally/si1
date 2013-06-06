@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>  
+<!--  
+Configuramos como default o nosso target "all", nele temos um atributo chamado depends, que indica uma dependência em relação a outro alvo. Cada alvo será executado na ordem em que for chamado respeitando a ordem de suas dependências.  
+-->  
+<project name="lab1" default="all" basedir=".">  
+  
+    <!-- propriedades do projeto com os nomes dos diretorios -->    
+    <property name="nameproject" value="lab1"/>
+    <property name="src" location="ufcg/si1" />  
+    <property name="build" location="bin" />  
+    <property name="dist" location="dist" />  
+    <property name="lib.dir" value="lib" />  
+    <property name="test" location="test" /> 
+    <property name="main.class" value="FirstClass"/>
+     
+  
+    <!--Target responsavel por criar diretorios bases para o projeto-->
+    <target name="init">  
+        <echo> Criando os diretorio bin e dist...</echo>  
+        <mkdir dir="\${build}" />  
+        <mkdir dir="\${dist}" />  
+        <mkdir dir="\${test}" /> 
+    </target>  
+    <!--fim da target-->
+    
+    <!--Target responsavel por limpar o projeto-->
+    <target name="limpa" description="target responsavel por limpar a workspace">  
+        <echo> Limpando a workspace, removendo bin, dist e .jar...</echo>  
+        <delete dir="\${build}"/>  
+        <delete dir="\${dist}"/>  
+    </target> 
+    <!--fim da target-->
+  
+    <!--Target responsavel por complilar o projeto-->
+    <target name="compila" depends="limpa, init">  
+        <echo> Compilando o projeto....</echo>  
+        <javac srcdir="\${src}" destdir="\${build}"/>      </target>      
+    <!--fim da target-->
+    
+    <!--Target responsavel por compilar os testes-->
+    <target name="compila-teste" depends="compila" description="compila o codigo java">
+        <echo> Compilando os testes do projeto... </echo>
+        <path id="lib">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+                    <!-- Pode colocar outros fileset aqui se precisar -->
+        </path>    
+        <javac srcdir="${test}" destdir="${build}" 
+            includeantruntime="false" classpathref="lib"/>
+
+        <echo> Testes do projeto compilados. </echo>
+    </target>
+    <!--fim da target-->
+    
+    <!--Target responsavel por executar o codigo--> 
+    <target name="executa" description="executa o projeto" depends="compila">
+        <echo> Running the project... </echo>
+         <java dir="${build}" classname="${main.class}" fork="true"> </java>        
+        <echo> Project executed with success. </echo>
+    </target>
+    <!--fim da target-->
+    
+    <!-- target testa - run the tests project -->
+	<target name="testa" depends="compila-teste" >
+	    <junit printsummary="yes" haltonfailure="no">
+	    	<formatter type="xml"/>
+	      <classpath>
+	      	<fileset dir="${lib.dir}" includes="*.jar" />
+	        <pathelement location="${build}"/>
+	      	<pathelement location="${test}"/>
+	      </classpath>
+	      <batchtest fork="yes" todir="${lib.dir}">
+	      	<fileset dir="${build}" includes="**/*Test*.class"/>
+	      </batchtest>
+	    </junit>
+	 </target>
+  
+
+</project> 
