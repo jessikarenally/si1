@@ -7,38 +7,65 @@
 	  xmlns:p="http://primefaces.prime.com.tr/ui">
 
 	<h:head>
-        <title>Adicionar contato</title>
+        <title>Agenda</title>
     </h:head>
     
     <h:body>
-        <p:fieldset legend="Adicionar contato" />
-        <h:form id="cadastro">
-        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
-	        <h:outputLabel id="lblNome" value="Nome"/>
-	        <h:inputText id="textNome" required="true" autocomplete="true" title="Infome o nome do novo contato" />
-	        
-	        <h:outputLabel id="lblNumero" value="Numero"/>
-	        <h:inputText id="textNumero" required="true" autocomplete="true" title="Infome um numerob para o contato" />
-	        
-	        <h:outputText value="Operadora: " />  
-	        <h:selectOneMenu id="tipo">  
-	            <f:selectItem itemLabel="Selecione a operadora" itemValue="" />  
-	            <f:selectItem itemLabel="Oi" itemValue="1" />  
-	            <f:selectItem itemLabel="Claro" itemValue="2" />  
-	            <f:selectItem itemLabel="Vivo" itemValue="3" />
-	            <f:selectItem itemLabel="Tim" itemValue="3" />  
-	        </h:selectOneMenu>  
-	           
-	        
-	        <h:outputLabel id="lblIdade" value="Idade"/>
-	        <h:inputText id="textIdade"  autocomplete="true" title="Infome a idade (opcional)" />
-	        
-	        <h:outputLabel id="lblEmail" value="Email"/>
-	        <h:inputText id="textEmail" autocomplete="true" title="Infome um email para o contato" />
-	        
-	        <h:commandButton id="btnCadastra" value="Cadastrar contato" action="#{agenda.addContato('#{lblNome}', '#{agenda.criaNumero(345670000000000L)}')}"/>
-    	   <h:commandButton id="volta" action="#{controller.index()}" value="index2" />
-    	</h:panelGrid>
-    	</h:form>
+    	<p:fieldset legend="Agenda" />
+        <h:form>
+        <br/><br/>
+        <h:commandButton id="btnCadastra" value="Cadastrar contato" action="#{controller.cadastro}"/>
+        </h:form>
+    
+    <h:form>  
+    	<p:dataTable var="contato" value="#{controller.contatos}">  
+        <p:column headerText="Nome">  
+            <h:outputText value="#{contato.nome}" />  
+        </p:column>  
+  
+        <p:column headerText="Quantidade de numeros">  
+            <h:outputText value="#{contato.qntNumero}" />  
+        </p:column>  
+        
+    </p:dataTable>  
+	</h:form>  
+	
+    <p:fieldset legend="Buscar contato" />
+        <h:form>
+        <h:outputLabel id="lblBuscarNome" value="Parte do nome"/>
+	    <h:inputText id="textBuscarNome"  autocomplete="true" title="Digite o nome ou parte do nome do contato que quer procurar" value="#{controller.nome}" />
+        <h:commandButton id="btnBusca" value="Buscar por nome" action="#{controller.busca}"/>
+        
+        <p:dataTable var="contato" value="#{controller.resultado}">  
+        <p:column headerText="Nome">  
+            <h:outputText value="#{contato.nome}" />  
+        </p:column>  
+  
+        <p:column headerText="Quantidade de numeros">  
+            <h:outputText value="#{contato.qntNumero}" />  
+        </p:column> 
+        
+        <p:column headerText="Numeros">  
+            <h:outputText value="#{contato.numeros}" />  
+        </p:column>  
+        
+        <p:column headerText="Idade">  
+            <h:outputText value="#{contato.idade}" />  
+        </p:column> 
+        
+        <p:column headerText="Emails">  
+            <h:outputText value="#{contato.email}" />  
+        </p:column> 
+        
+        <p:column headerText="Descricao">  
+            <h:outputText value="#{contato.descricao}" />  
+        </p:column> 
+        </p:dataTable>
+        
+        </h:form>
+    
+    
     </h:body>
+    
+    
 </html>

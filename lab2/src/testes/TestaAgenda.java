@@ -18,23 +18,27 @@ public class TestaAgenda {
 		
 		Assert.assertEquals(0, agenda1.getQuantNumeros("Joao"));
 		List<Numero> numeros = new ArrayList<Numero>();
-		numeros.add(new Numero(311288675432L));
+		numeros.add(new Numero("311288675432", "oi"));
 		
 		try{
 			agenda1.addContato("Joao", numeros);
 		}catch(IllegalArgumentException e){
+			
+		}catch (Exception e) {
 			
 		}
 		
 		Assert.assertEquals(1, agenda1.getQuantNumeros("Joao"));
 
 		List<Numero> numeros2 = new ArrayList<Numero>();
-		numeros2.add(new Numero(311288675455L));
+		numeros2.add(new Numero("311288675455", "oi"));
 		Assert.assertEquals(0, agenda1.getQuantNumeros("Joana"));
 		
 		try{
 			agenda1.addContato("Joana", numeros2);
 		}catch(IllegalArgumentException e){
+			
+		}catch(Exception e){
 			
 		}
 		
@@ -46,13 +50,15 @@ public class TestaAgenda {
 		AgendaBean agenda2 = new AgendaBean();
 		
 		List<Numero> numeros = new ArrayList<Numero>();
-		numeros.add(new Numero(311288675432L));
+		numeros.add(new Numero("311288675432", "oi"));
 		
 		try{
 			agenda2.addContato("", numeros);
 			fail();
 		}catch(IllegalArgumentException e){
-			System.out.println(e);			
+					
+		}catch (Exception e) {
+
 		}
 		
 		

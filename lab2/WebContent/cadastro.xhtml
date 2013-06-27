@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<h:head>
+        <title>Adicionar contato</title>
+    </h:head>
+    
+    <h:body>
+        <p:fieldset legend="Adicionar contato" />
+        <h:form id="cadastro">
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
+	        <h:outputLabel id="lblNome" value="Nome"/>
+	        <h:inputText id="textNome" required="true" autocomplete="true" title="Infome o nome do novo contato" value="#{controller.nome}" />
+	        
+	        <h:outputLabel id="lblNumero" value="Numero"/>
+	        <h:inputText id="textNumero" required="true" autocomplete="true" title="Infome um numero para o contato" value="#{controller.numero}" />
+	        
+	        <h:outputText value="Operadora: " />  
+	        <h:selectOneMenu id="tipo" value="#{controller.operadora}">  
+	            <f:selectItem itemLabel="Selecione a operadora" itemValue="" />  
+	            <f:selectItem itemLabel="Oi" itemValue="1" />  
+	            <f:selectItem itemLabel="Claro" itemValue="2" />  
+	            <f:selectItem itemLabel="Vivo" itemValue="3" />
+	            <f:selectItem itemLabel="Tim" itemValue="4" /> 
+	            <f:selectItem itemLabel="Residencial" itemValue="4" />  
+	        </h:selectOneMenu>      
+	        
+	        <h:outputLabel id="lblIdade" value="Idade"/>
+	        <h:inputText id="textIdade"  autocomplete="true" title="Infome a idade (opcional)" value="#{controller.idade}" />
+	        
+	        <h:outputLabel id="lblEmail" value="Email"/>
+	        <h:inputText id="textEmail" autocomplete="true" title="Infome um ou mais emails para o contato separados por virgulas" value="#{controller.email}" />
+	        
+	        <h:outputLabel id="lblDescricao" value="Descricao"/>
+	        <h:inputText id="textDescricao" autocomplete="true" title="Infome uma descricao para o contato" value="#{controller.descricao}" />
+	        
+	        
+	        <h:commandButton id="btnCadastra" value="Cadastrar contato" action="#{controller.addContato}"/>
+    	  
+    	</h:panelGrid>
+    	</h:form>
+    	
+    	<h:form>  <h:commandButton id="volta" action="#{controller.index}" value="index2" /></h:form>
+    </h:body>
+</html>

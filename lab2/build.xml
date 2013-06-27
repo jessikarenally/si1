@@ -2,15 +2,15 @@
 <!-- ====================================================================== 
      Feb 6, 2013 2:17:54 PM                                                        
              
-     Andre L Abrantes - SI 1 - 2013.1    
+     Jessika Renally - SI 1 - 2013.1    
                                                 
      ====================================================================== -->
-<project name="agenda" default="" basedir=".">
+<project name="lab2jessikarenally" default="" basedir=".">
 	
 	<!-- ================================= 
 	          propriedades do projeto              
 	         ================================= -->
-	<property name="sysName" value="agenda"/> <!-- Defina o nome do sistema sem espacos. -->
+	<property name="sysName" value="lab2jessikarenally"/> <!-- Defina o nome do sistema sem espacos. -->
 	<property name="warFile" value="dist/${sysName}.war"/>
 	<property name="src" value="\${basedir}/src"/>
 	<property name="build" value="bin"/>
