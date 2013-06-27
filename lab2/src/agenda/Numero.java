@@ -22,7 +22,9 @@ public class Numero {
 	
 	private boolean noPadrao(String nmero) {
 		if (nmero.length() != 12) {
-			if( nmero.length() != 8) return false;
+			if( nmero.length() != 8) {
+				if(nmero.length() != 10) return false;
+			}
 		}
 				
 		try{
@@ -43,4 +45,7 @@ public class Numero {
 	}
 
 
+	public String toString(){
+		return numero + " " + operadora;
+	}
 }

@@ -5,12 +5,12 @@
      Jessika Renally - SI 1 - 2013.1    
                                                 
      ====================================================================== -->
-<project name="lab2jessikarenally" default="" basedir=".">
+<project name="lab2JessikaRenally" default="" basedir=".">
 	
 	<!-- ================================= 
 	          propriedades do projeto              
 	         ================================= -->
-	<property name="sysName" value="lab2jessikarenally"/> <!-- Defina o nome do sistema sem espacos. -->
+	<property name="sysName" value="lab2JessikaRenally"/> <!-- Defina o nome do sistema sem espacos. -->
 	<property name="warFile" value="dist/${sysName}.war"/>
 	<property name="src" value="\${basedir}/src"/>
 	<property name="build" value="bin"/>
@@ -112,4 +112,21 @@
 			<arg value="${CATALINA_HOME}\bin\shutdown.bat" />
 		</exec>
 	</target>
+	
+	<!-- ================================= 
+	          target: testa      
+	     ================================= -->
+	<target name="testa" depends="compila" >
+	    <junit printsummary="yes" haltonfailure="no">
+	    	<formatter type="xml"/>
+	      <classpath>
+	      	<fileset dir="${sysLibs}" includes="*.jar" />
+	        <pathelement location="${build}"/>
+	      	<pathelement location="${test}"/>
+	      </classpath>
+	      <batchtest fork="yes" todir="${lib.dir}">
+	      	<fileset dir="${build}" includes="**/*Test*.class"/>
+	      </batchtest>
+	    </junit>
+	 </target>
 </project>

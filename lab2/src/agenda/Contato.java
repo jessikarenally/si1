@@ -15,7 +15,7 @@ public class Contato {
 	private String descricao;
 	private int qntNumero;
 	
-	public Contato(String nome, List<Numero> numeros){
+	public Contato(String nome, List<Numero> numeros) throws Exception {
 		if(nome.equals("")) throw new IllegalArgumentException("Por favor, digite seu nome");
 		this.nome = nome;
 		this.numeros = numeros;
@@ -29,7 +29,7 @@ public class Contato {
 	}
 
 
-	public Contato(String nome, Numero numero) {
+	public Contato(String nome, Numero numero)  throws Exception{
 		List<Numero> num = new ArrayList<Numero>();
 		num.add(numero);	
 		

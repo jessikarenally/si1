@@ -29,7 +29,7 @@ public class AgendaBean {
 	public Contato searchContato(String nome) {
 		
 		for (Contato contato : contatos) {
-			if(contato.getNome().equals(nome)) return contato;
+			if(contato.getNome().toLowerCase().equals(nome.toLowerCase())) return contato;
 		}
 		
 		return null;
@@ -61,7 +61,19 @@ public class AgendaBean {
 		List<Contato> results = new ArrayList<Contato>();
 		
 		for (Contato contato : contatos) {
-			if(contato.getNome().startsWith(nome)) results.add(contato);
+			if(contato.getNome().toLowerCase().startsWith(nome.toLowerCase())) results.add(contato);
+		}
+		return results;
+	}
+
+	public List<Contato> searchContatosPorTel(String numero) {
+		List<Contato> results = new ArrayList<Contato>();
+		
+		for (Contato contato : contatos) {
+			for (Numero nmero : contato.getNumeros()) {
+				if(nmero.getNumero().startsWith(numero)) results.add(contato);
+				
+			}
 		}
 		return results;
 	}

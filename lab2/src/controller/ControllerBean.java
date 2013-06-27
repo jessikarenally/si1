@@ -33,6 +33,10 @@ public class ControllerBean {
 		resultado = agenda.searchContatos(nome);
 	}
 	
+	public void buscaTel(){
+		resultado = agenda.searchContatosPorTel(numero);
+	}
+	
 	public String addContato() {		
 		Numero nmero;		
 		try{

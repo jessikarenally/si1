@@ -29,12 +29,21 @@
         
     </p:dataTable>  
 	</h:form>  
-	
+	<br/><br/>
     <p:fieldset legend="Buscar contato" />
         <h:form>
+        <br/><br/>
         <h:outputLabel id="lblBuscarNome" value="Parte do nome"/>
 	    <h:inputText id="textBuscarNome"  autocomplete="true" title="Digite o nome ou parte do nome do contato que quer procurar" value="#{controller.nome}" />
-        <h:commandButton id="btnBusca" value="Buscar por nome" action="#{controller.busca}"/>
+        <h:commandButton id="btnBuscaN" value="Buscar por nome" action="#{controller.busca}"/>
+        
+        <br/><br/>
+        
+        <h:outputLabel id="lblBuscarTelefone" value="Parte do telefone"/>
+	    <h:inputText id="textBuscarTelefone"  autocomplete="true" title="Digite o telefone ou parte do telefone do contato que quer procurar" value="#{controller.numero}" />
+        <h:commandButton id="btnBuscaT" value="Buscar por telefone" action="#{controller.buscaTel}"/>
+        
+		<br/>
         
         <p:dataTable var="contato" value="#{controller.resultado}">  
         <p:column headerText="Nome">  

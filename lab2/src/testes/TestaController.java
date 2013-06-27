@@ -13,9 +13,7 @@ public class TestaController {
 		
 		
 		c1.addContato();
-		//Assert.assertEquals(true, c1.hasContato("Joao"));
 		
-		//Assert.assertEquals(false, c1.hasContato("joana"));
 	}
 
 }
