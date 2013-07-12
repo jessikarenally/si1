@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<h:head>
+        <title>Tarefas</title>
+    </h:head>
+    
+    <h:body>
+    	<p:fieldset legend="Tarefas" />
+        <h:form>
+        <br/><br/>
+        <h:commandButton id="btnAddNovaTarefa" value="Nova tarefa" action="#{gerenciadorBean.pageNewTask}"/>
+        </h:form>
+    
+    	<p:separator id="separator"/>    	
+	   
+	    <p:fieldset legend="Tarefas incompletas" />
+	        <h:form>  		
+	    	<p:dataTable var="tarefa" value="#{gerenciadorbean.incompletas}">  
+		        <p:column headerText="Nome">  
+		            <h:outputText value="#{tarefa.nome}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Descricao">  
+		            <h:outputText value="#{tarefa.descricao}" />  
+		        </p:column>  
+		        
+		        <p:column headerText="Data de criacao">  
+		            <h:outputText value="#{tarefa.getDataFormatada}" />  
+		        </p:column>  
+		        
+		        <p:column headerText="Data de termino">  
+		            <h:outputText value="#{getHoraFormata}" />  
+		        </p:column>       
+	        
+	    	</p:dataTable>  
+		</h:form>
+		
+
+	 <h:form>
+	 <h:commandButton id="btntest" value="iai?" action="#{gerenciadorBean.iai}"/>
+	 </h:form>   
+    </h:body>
+    
+    
+</html>
