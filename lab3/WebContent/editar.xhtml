@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<h:head>
+        <title>Editar dados da tarefa</title>
+    </h:head>
+    
+    <h:body>
+        <p:fieldset legend="Editar dados da tarefa" />
+        <h:form id="edita_tarefa">
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
+	        
+	        <h:outputLabel id="lblNomee" value="Nome*"/>
+	        <p:inputText id="textNome" required="true" autocomplete="true" title="Infome um novo nome para a tarefa" value="#{gerenciadorBean.nome}" />
+	        	        
+	        <h:outputLabel id="lblDescricaoe" value="Descricao"/>
+	        <p:inputText id="textDescricao" autocomplete="true" title="Infome a descricao da tarefa" value="#{gerenciadorBean.descricao}" />
+	        	    
+	        <h:outputLabel id="lblDatae" value="Data"/>
+	        <p:inputMask value="#{gerenciadorBean.data}" mask="99/99/9999"/>  
+	       
+	        <h:outputLabel id="lblHorae" value="Hora limite"/>
+	        <p:inputMask value="#{gerenciadorBean.horaLimite}" mask="99:99:9999"/> 	    
+	        	        
+	        <h:commandButton id="btnEditTask" value="Salvar" action="#{gerenciadorBean.editTask}"/>
+    	  
+    	</h:panelGrid>
+    	</h:form>
+		
+		<h:form>
+	        <h:commandButton id="btnVoltar" value="Voltar" action="#{gerenciadorBean.index}"/>
+	    </h:form>
+	    
+    </h:body>
+</html>
+

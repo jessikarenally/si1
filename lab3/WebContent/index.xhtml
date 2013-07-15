@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<h:head>
+        <title>Tarefas</title>
+    </h:head>
+    
+    <h:body>
+    	<p:fieldset legend="Tarefas" />
+        <h:form>
+        <br/><br/>
+        <h:commandButton id="btnAddNovaTarefa" value="Nova tarefa" action="#{gerenciadorBean.pageNewTask}"/>
+        </h:form>
+    
+    	<p:separator id="separator"/>    	
+	   
+	    <p:fieldset legend="Tarefas incompletas" />
+	        <h:form>  			
+	    	<p:dataTable var="tarefa" value="#{gerenciadorBean.incompletas}" sortMode="multiple" 
+	    		selectionMode="single" selection="#{gerenciadorBean.selecionada}" 
+				rowSelectListener="#{gerenciadorBean.onRowSelect}"
+				rowKey="#{tarefa.nome}">
+		        
+		        <p:column  headerText="Nome">  
+		            <h:outputText value="#{tarefa.nome}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Descricao">  
+		            <h:outputText value="#{tarefa.descricao}" />  
+		        </p:column>  
+		        
+		        <p:column sortBy="#{tarefa.dataFormatada}" sortFunction="#{gerenciadorBean.sortByDate}" headerText="Data de criacao">  
+		            <h:outputText value="#{tarefa.dataFormatada}" />  
+		        </p:column>  
+		        
+		        <p:column sortBy="#{tarefa.horaLimiteFormata}" sortFunction="#{gerenciadorBean.sortByHour}" headerText="Data de termino">  
+		            <h:outputText value="#{tarefa.horaLimiteFormata}" />  
+		        </p:column>       
+	        
+	    	</p:dataTable>  
+		</h:form>
+		
+		<p:separator id="separator2"/>  
+		
+		<p:fieldset legend="Tarefas completas" />
+	        <h:form>  			
+	    	<p:dataTable var="tarefa" value="#{gerenciadorBean.completas}" sortMode="multiple" 
+	    		selectionMode="single" selection="#{gerenciadorBean.selecionada}" 
+				rowSelectListener="#{gerenciadorBean.onRowSelect}"
+				rowKey="#{tarefa.nome}">
+		        
+		        <p:column  headerText="Nome">  
+		            <h:outputText value="#{tarefa.nome}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Descricao">  
+		            <h:outputText value="#{tarefa.descricao}" />  
+		        </p:column>  
+		        
+		        <p:column sortBy="#{tarefa.dataFormatada}" sortFunction="#{gerenciadorBean.sortByDate}" headerText="Data de criacao">  
+		            <h:outputText value="#{tarefa.dataFormatada}" />  
+		        </p:column>  
+		        
+		        <p:column sortBy="#{tarefa.horaLimiteFormata}" sortFunction="#{gerenciadorBean.sortByHour}" headerText="Data de termino">  
+		            <h:outputText value="#{tarefa.horaLimiteFormata}" />  
+		        </p:column>       
+	        
+	    	</p:dataTable>  
+		</h:form>
+		
+	<p:separator id="separator3"/>  
+		
+	<p:fieldset legend="Outras opções" />
+	
+	 <h:form>
+		<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5"> 
+	        <h:outputLabel id="lblChangeStatus" value="Marcar como completa"/> 
+	        <h:selectOneMenu value="#{gerenciadorBean.nome}">  
+	            <!-- >f:selectItem itemLabel="Marque como completa" itemValue="" /-->  
+	            <f:selectItems value="#{gerenciadorBean.nomes}"/>  
+	        </h:selectOneMenu> 
+	        <h:commandButton id="btnCompleta" value="Marcar como completa" action="#{gerenciadorBean.marcaComoCompleta}"/>
+	      </h:panelGrid>  
+        
+	 </h:form>  
+
+	 <h:form>
+		<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="20"> 
+	        <h:outputLabel id="lblRemove" value="Remover tarefa"/> 
+	        <h:selectOneMenu value="#{gerenciadorBean.nome}">  
+	            <f:selectItems value="#{gerenciadorBean.allTasks}"/>  
+	        </h:selectOneMenu> 
+	        <h:commandButton id="btnRemove" value="Remover tarefa" action="#{gerenciadorBean.removeTarefa}"/>
+	      </h:panelGrid>  
+        
+	 </h:form> 
+	 <h:form>
+	 	<h:outputLabel id="lblChangeStatus" value="Remover tarefa" />
+	 	<h:commandButton id="btntest" value="iai?" action="#{gerenciadorBean.iai}"/>
+	 </h:form>
+    </h:body>
+    
+    
+</html>
