@@ -5,12 +5,12 @@
      Jessika Renally - SI 1 - 2013.1    
                                                 
      ====================================================================== -->
-<project name="lab3JessikaRenally" default="" basedir=".">
+<project name="lab4JessikaRenally" default="" basedir=".">
 	
 	<!-- ================================= 
 	          propriedades do projeto              
 	         ================================= -->
-	<property name="sysName" value="lab3JessikaRenally"/> 
+	<property name="sysName" value="lab4JessikaRenally"/> 
 	<property name="warFile" value="dist/${sysName}.war"/>
 	<property name="src" value="\${basedir}/src"/>
 	<property name="build" value="bin"/>
@@ -18,7 +18,7 @@
 	<property name="doc" value="doc"/>
 	<property name="webLibs" value="WebContent/WEB-INF/lib"/>
 	<property name="webXML" value="WebContent/WEB-INF/web.xml"/>
-	<property name="sysLibs" value="lib"/>
+	<property name="sysLibs" value="libs"/>
 	<property name="classTeste" value="easyaccept"/>
 	<property name="webContent" value="WebContent" />
 	<property name="CATALINA_HOME" value="C:\tomcat" /> 

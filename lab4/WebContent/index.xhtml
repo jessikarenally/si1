@@ -1,51 +1,111 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.prime.com.tr/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Login</title>
+</h:head>
+
+<h:body>
+	<style>
+#form1 {
+	position: absolute;
+	left: 40%;
+	margin-left: -300px;
+}
+</style>
 
 	<h:head>
-        <title>Tarefas</title>
-    </h:head>
-    
-    <h:body>
-    	<p:fieldset legend="Tarefas" />
-        <h:form>
-        <br/><br/>
-        <h:commandButton id="btnAddNovaTarefa" value="Nova tarefa" action="#{gerenciadorBean.pageNewTask}"/>
-        </h:form>
-    
-    	<p:separator id="separator"/>    	
-	   
-	    <p:fieldset legend="Tarefas incompletas" />
-	        <h:form>  		
-	    	<p:dataTable var="tarefa" value="#{gerenciadorbean.incompletas}">  
-		        <p:column headerText="Nome">  
-		            <h:outputText value="#{tarefa.nome}" />  
-		        </p:column>  
-		  
-		        <p:column headerText="Descricao">  
-		            <h:outputText value="#{tarefa.descricao}" />  
-		        </p:column>  
-		        
-		        <p:column headerText="Data de criacao">  
-		            <h:outputText value="#{tarefa.getDataFormatada}" />  
-		        </p:column>  
-		        
-		        <p:column headerText="Data de termino">  
-		            <h:outputText value="#{getHoraFormata}" />  
-		        </p:column>       
-	        
-	    	</p:dataTable>  
-		</h:form>
-		
+		<br />
+		<br />
+		<h1 align="center">
+			<font color="#36648B">Agenda</font>
+		</h1>
+		<br />
+		<br />
+		<p:separator id="separator" />
+	</h:head>
+	<br />
+	<br />
 
-	 <h:form>
-	 <h:commandButton id="btntest" value="iai?" action="#{gerenciadorBean.iai}"/>
-	 </h:form>   
-    </h:body>
-    
-    
+	<h:form id="form1">
+		<p:panelGrid columns="3"
+			style="width:876px; border-style: hidden !important;">
+			<font color="#36648B" style="text-align: justify;">
+				<p>Bem vindo a sua Agenda de Contatos, aqui você pode adicionar
+					os seus amigos, vizinhos, familiares. Nessa agenda você tem a
+					possobilidade de adicionar a cada contato vários número de
+					telefones diferentes, pois hoje em dia, várias pessoas têm mais de
+					um telefone. Você também pode adicionar um ou mais emails para cada
+					contato, além de informações pessoais dele, como idade e uma
+					descrição.</p>
+				<p>Aproveite da melhor forma possível as facilidade oferecidas
+					pela sua Agenda!!</p>
+			</font>
+
+			<p:separator id="separator2" style="width:3px;height:344px" />
+
+			<p:panel header="Login">
+				<p:messages id="messages" showDetail="false" autoUpdate="false" />
+
+				<h:panelGrid columns="2" id="loginGrid">
+					<h:outputLabel for="login" value="Usuário: " />
+					<p:inputText id="login" value="#{agendaBean.login}" label="Usuario" />
+
+					<h:outputLabel for="senha" value="Senha " />
+					<p:password id="senha" value="#{agendaBean.password}" label="Senha" />
+				</h:panelGrid>
+
+				<p:commandButton id="btLogin" value="Login"
+					action="#{agendaBean.loginButton}" />
+
+				<p:commandButton id="newUser" value="Criar uma conta"
+					onclick="dlgNewUser.show()" />
+			</p:panel>
+
+		</p:panelGrid>
+	</h:form>
+
+	<style>
+#form2 {
+	position: absolute;
+	left: 75%;
+	margin-left: -300px;
+}
+</style>
+
+	<h:form id="formNewUser">
+		<p:dialog id="criarNewUser" header="Resultado" widgetVar="dlgNewUser"
+			modal="true" height="300" width="500">
+
+			<p:panel header="Novo Usuário">
+				<p:messages id="messages" showDetail="false" autoUpdate="true" />
+
+				<h:panelGrid columns="2" id="matchGrid">
+					<h:outputLabel for="newLogin" value="Login: " />
+					<p:inputText id="newLogin" value="#{agendaBean.newLogin}"
+						label="Login" required="true" />
+
+					<h:outputLabel for="pwd1" value="Senha: " />
+					<p:password id="pwd1" value="#{agendaBean.newPassword}"
+						match="pwd2" label="Senha" required="true">
+						<f:validateLength maximum="20" minimum="6" />
+					</p:password>
+
+					<h:outputLabel for="pwd2" value="Confirmar senha: " />
+					<p:password id="pwd2" value="#{agendaBean.newPassword}"
+						label="Repetir senha" required="true" />
+				</h:panelGrid>
+
+				<p:commandButton id="saveButton" update="matchGrid" value="Criar"
+					action="#{agendaBean.saveButton}" onsuccess="dlgNewUser.hide()" />
+			</p:panel>
+		</p:dialog>
+	</h:form>
+
+</h:body>
 </html>
+
